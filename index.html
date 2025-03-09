@@ -7,37 +7,18 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #fff;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #222;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
-        }
-        h1 {
-            color: #FFD700;
-        }
         .buttons {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 15px;
             margin: 20px 0;
         }
         .btn {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px;
+            justify-content: space-between;
+            padding: 15px 20px;
             background: #FFD700;
             color: #111;
             text-decoration: none;
@@ -45,56 +26,15 @@
             font-weight: bold;
             border-radius: 5px;
             transition: 0.3s;
+            width: 100%;
+            max-width: 300px;
         }
         .btn:hover {
             background: #ffcc00;
-            transform: scale(1.05);
         }
         .btn img {
             width: 24px;
             height: 24px;
-        }
-        .carousel-container {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-            margin-top: 20px;
-        }
-        .carousel {
-            display: flex;
-            gap: 10px;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            width: calc(25% - 10px);
-            box-sizing: border-box;
-            text-align: center;
-            background: #333;
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .slide img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .slide p {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #FFD700;
-        }
-        .carousel-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .carousel-controls button {
-            background: #FFD700;
-            color: #111;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
         }
     </style>
 </head>
@@ -102,60 +42,38 @@
     <div class="container">
         <h1>Добро пожаловать!</h1>
         <div class="buttons">
-            <a href="https://t.me/yourtelegram" target="_blank" class="btn telegram">
-                <img src="icons/telegram.png" alt="Telegram"> В Telegram
+            <a href="https://t.me/COLIZEUM_SHUSHARI" target="_blank" class="btn telegram">
+                <span>В Telegram</span> <img src="./icons/telegram.png" alt="Telegram">
             </a>
             <a href="https://vk.com/colizeum_spb_shushary" target="_blank" class="btn vk">
-                <img src="icons/vk.png" alt="VK"> ВКонтакте
+                <span>ВКонтакте</span> <img src="./icons/vk.png" alt="VK">
             </a>
             <a href="https://vk.com/@colizeum_spb_shushary-ceny" target="_blank" class="btn price">
-                <img src="icons/pricelist.png" alt="Price List"> Прайс-лист
+                <span>Прайс-лист</span> <img src="./icons/pricelist.png" alt="Price List">
             </a>
         </div>
         <div class="carousel-container">
             <button class="prev">&#10094;</button>
             <div class="carousel">
                 <div class="slide">
-                    <img src="products/energy.jpg" alt="Энергетик">
+                    <img src="./products/energy.jpg" alt="Энергетик">
                     <p>Энергетик - 150₽</p>
                 </div>
                 <div class="slide">
-                    <img src="products/chocolate.jpg" alt="Шоколадка">
+                    <img src="./products/chocolate.jpg" alt="Шоколадка">
                     <p>Шоколадка - 100₽</p>
                 </div>
                 <div class="slide">
-                    <img src="products/snack.jpg" alt="Снэк">
+                    <img src="./products/snack.jpg" alt="Снэк">
                     <p>Снэк - 120₽</p>
                 </div>
                 <div class="slide">
-                    <img src="products/drink.jpg" alt="Напиток">
+                    <img src="./products/drink.jpg" alt="Напиток">
                     <p>Напиток - 130₽</p>
                 </div>
             </div>
             <button class="next">&#10095;</button>
         </div>
     </div>
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll(".slide");
-        const totalSlides = slides.length;
-        const carousel = document.querySelector(".carousel");
-        const prevButton = document.querySelector(".prev");
-        const nextButton = document.querySelector(".next");
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${index * 25}%)`;
-        }
-
-        nextButton.addEventListener("click", () => {
-            index = (index + 1) % totalSlides;
-            updateCarousel();
-        });
-
-        prevButton.addEventListener("click", () => {
-            index = (index - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        });
-    </script>
 </body>
 </html>
