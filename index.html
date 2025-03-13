@@ -1,520 +1,769 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colizeum SPB Shushary</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, #1d1d1d 0%, #000000 100%);
-            border-bottom: 4px solid #ffd700;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
-        }
-        
-        h1 {
-            font-size: 36px;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            color: #ffffff;
-            font-weight: 300;
-        }
-        
-        .button-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .social-button {
-            display: flex;
-            align-items: center;
-            background-color: #ffd700;
-            color: #000000;
-            padding: 15px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
-            justify-content: center;
-        }
-        
-        .social-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3);
-            background-color: #ffcc00;
-        }
-        
-        .social-button i {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-        
-        .vk-button {
-            background-color: #ffd700;
-            color: #000000;
-        }
-        
-        .telegram-button {
-            background-color: #ffd700;
-            color: #000000;
-        }
-        
-        .price-button, .promo-button {
-            background-color: #1d1d1d;
-            color: #ffd700;
-            border: 2px solid #ffd700;
-        }
-        
-        .price-button:hover, .promo-button:hover {
-            background-color: #ffd700;
-            color: #000000;
-        }
-        
-        .carousel-section {
-            margin: 50px 0;
-            background-color: #1d1d1d;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            border: 1px solid #333;
-        }
-        
-        .carousel-heading {
-            text-align: center;
-            color: #ffd700;
-            margin-bottom: 30px;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease;
-            margin: 0 auto;
-        }
-        
-        .carousel-slide {
-            flex: 0 0 25%;
-            max-width: 25%;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        @media (max-width: 991px) {
-            .carousel-slide {
-                flex: 0 0 33.333%;
-                max-width: 33.333%;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .carousel-slide {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .carousel-slide {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-        }
-        
-        .product-card {
-            background: linear-gradient(145deg, #222222, #181818);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #333;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
-            border-color: #ffd700;
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 2px solid #333;
-        }
-        
-        .product-info {
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .product-name {
-            font-size: 18px;
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .product-price {
-            font-size: 22px;
-            color: #ffd700;
-            font-weight: 700;
-        }
-        
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 15px;
-        }
-        
-        .carousel-control {
-            background-color: #ffd700;
-            color: #000000;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .carousel-control:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #1d1d1d 0%, #000000 100%);
-            border-top: 4px solid #ffd700;
-            margin-top: 50px;
-        }
-        
-        .footer-text {
-            color: #999;
-            font-size: 14px;
-        }
-        
-        .footer-logo {
-            color: #ffd700;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colizeum SPB Shushary</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Montserrat', Arial, sans-serif;
+      }
+      
+      body {
+          background-color: #121212;
+          color: #ffffff;
+          line-height: 1.6;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+      }
+      
+      header {
+          text-align: center;
+          padding: 40px 0;
+          background: linear-gradient(135deg, #1d1d1d 0%, #000000 100%);
+          border-bottom: 4px solid #ffd700;
+          margin-bottom: 30px;
+          box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+      }
+      
+      h1 {
+          font-size: 36px;
+          color: #ffd700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 10px;
+          text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+      
+      .subtitle {
+          font-size: 18px;
+          color: #ffffff;
+          font-weight: 300;
+      }
+      
+      .button-section {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+          margin: 40px 0;
+      }
+      
+      .social-button {
+          display: flex;
+          align-items: center;
+          background-color: #ffd700;
+          color: #000000;
+          padding: 15px 25px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          font-size: 16px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          min-width: 200px;
+          justify-content: center;
+      }
+      
+      .social-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3);
+          background-color: #ffcc00;
+      }
+      
+      .vk-button,
+      .telegram-button {
+          background-color: #ffd700;
+          color: #000000;
+      }
+      
+      .price-button,
+      .promo-button,
+      .admin-button,
+      .map-button {
+          background-color: #1d1d1d;
+          color: #ffd700;
+          border: 2px solid #ffd700;
+      }
+      
+      .price-button:hover,
+      .promo-button:hover,
+      .admin-button:hover,
+      .map-button:hover {
+          background-color: #ffd700;
+          color: #000000;
+      }
+      
+      .maps-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+          margin: 20px 0;
+      }
+      
+      .review-section {
+          background-color: #1d1d1d;
+          padding: 25px;
+          border-radius: 10px;
+          margin: 30px 0;
+          border: 1px solid #333;
+      }
+      
+      .review-heading {
+          color: #ffd700;
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 22px;
+      }
+      
+      .review-content {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+      }
+      
+      .review-item {
+          flex: 1 1 250px;
+          display: flex;
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.05);
+          padding: 15px;
+          border-radius: 8px;
+          border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      
+      .review-icon {
+          font-size: 25px;
+          color: #ffd700;
+          margin-right: 15px;
+      }
+      
+      .bonus-highlight {
+          color: #ffd700;
+          font-weight: 700;
+      }
+      
+      /* Стилизация карусели */
+      .carousel-section {
+          margin: 40px 0;
+          background-color: #1d1d1d;
+          padding: 30px;
+          border-radius: 12px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+          border: 1px solid #333;
+      }
+      
+      .carousel-heading {
+          text-align: center;
+          color: #ffd700;
+          margin-bottom: 30px;
+          font-size: 28px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+      }
+      
+      .carousel {
+          position: relative;
+          overflow: hidden;
+          margin: 0 auto;
+          width: 100%;
+      }
+      
+      .carousel-container {
+          display: flex;
+          transition: transform 0.5s ease;
+      }
+      
+      .carousel-slide {
+          min-width: 100%;
+          padding: 10px;
+          box-sizing: border-box;
+      }
+      
+      /* Сетка для 4х4 каталога товаров */
+      .product-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 15px;
+      }
+      
+      .product-card {
+          background: linear-gradient(145deg, #222222, #181818);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border: 1px solid #333;
+      }
+      
+      .product-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+          border-color: #ffd700;
+      }
+      
+      .product-image {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+          border-bottom: 2px solid #333;
+      }
+      
+      .product-info {
+          padding: 10px;
+          text-align: center;
+      }
+      
+      .product-name {
+          font-size: 16px;
+          color: #ffffff;
+          margin-bottom: 5px;
+          font-weight: 600;
+      }
+      
+      .product-price {
+          font-size: 18px;
+          color: #ffd700;
+          font-weight: 700;
+      }
+      
+      .carousel-controls {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          gap: 15px;
+      }
+      
+      .carousel-control {
+          background-color: #ffd700;
+          color: #000000;
+          border: none;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          transition: all 0.3s ease;
+      }
+      
+      .carousel-control:hover {
+          background-color: #ffffff;
+          color: #000000;
+      }
+      
+      footer {
+          text-align: center;
+          padding: 30px 0;
+          background: linear-gradient(135deg, #1d1d1d 0%, #000000 100%);
+          border-top: 4px solid #ffd700;
+          margin-top: 50px;
+      }
+      
+      .footer-text {
+          color: #999;
+          font-size: 14px;
+      }
+      
+      .footer-logo {
+          color: #ffd700;
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+      }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Colizeum SPB Shushary</h1>
-            <p class="subtitle">Энергетики, снеки и много другого</p>
-        </div>
-    </header>
-    
+  <header>
     <div class="container">
-        <section class="button-section">
-            <a href="https://vk.com/colizeum_spb_shushary" class="social-button vk-button" target="_blank">
-                <i class="fab fa-vk"></i> Группа ВКонтакте
-            </a>
-            <a href="https://t.me/COLIZEUM_SHUSHARI" class="social-button telegram-button" target="_blank">
-                <i class="fab fa-telegram-plane"></i> Телеграм канал
-            </a>
-            <a href="https://vk.com/@colizeum_spb_shushary-ceny" class="social-button price-button" target="_blank">
-                <i class="fas fa-file-invoice-dollar"></i> Прайс-лист
-            </a>
-            <a href="https://vk.com/@colizeum_spb_shushary-akcii" class="social-button promo-button" target="_blank">
-                <i class="fas fa-percent"></i> Акции
-            </a>
-        </section>
-        
-        <section class="carousel-section">
-            <h2 class="carousel-heading">Наши продукты</h2>
-            <div class="carousel">
-                <div class="carousel-container" id="carousel">
-                    <!-- Энергетики -->
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/https://papa-lepit.ru/wp-content/uploads/2021/02/adrenalin-rash-3-4.jpg" alt="Energy Drink 1" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Energy Drink Adrenalin</h3>
-                                <p class="product-price">200 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Energy Drink 2" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Energy Drink Zero</h3>
-                                <p class="product-price">159 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Energy Drink 3" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Energy Drink Tropical</h3>
-                                <p class="product-price">169 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Energy Drink 4" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Energy Drink Berry</h3>
-                                <p class="product-price">169 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Шоколадки -->
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Chocolate 1" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Молочный шоколад</h3>
-                                <p class="product-price">79 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Chocolate 2" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Темный шоколад</h3>
-                                <p class="product-price">89 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Chocolate 3" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Шоколад с орехами</h3>
-                                <p class="product-price">99 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Chocolate 4" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Шоколад с карамелью</h3>
-                                <p class="product-price">109 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Другие снеки -->
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Snack 1" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Чипсы классические</h3>
-                                <p class="product-price">119 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Snack 2" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Сухарики с сыром</h3>
-                                <p class="product-price">69 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Snack 3" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Орешки соленые</h3>
-                                <p class="product-price">129 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="product-card">
-                            <img src="/api/placeholder/400/320" alt="Snack 4" class="product-image">
-                            <div class="product-info">
-                                <h3 class="product-name">Сушеные фрукты</h3>
-                                <p class="product-price">139 ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-controls">
-                    <button class="carousel-control prev-btn" id="prevBtn">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-control next-btn" id="nextBtn">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
+      <h1>Colizeum SPB Shushary</h1>
+      <p class="subtitle">Энергетики, снеки и много другого</p>
     </div>
+  </header>
+  
+  <div class="container">
+    <section class="button-section">
+      <a href="https://vk.com/colizeum_spb_shushary" class="social-button vk-button" target="_blank">
+        <i class="fab fa-vk"></i> Группа ВКонтакте
+      </a>
+      <a href="https://t.me/COLIZEUM_SHUSHARI" class="social-button telegram-button" target="_blank">
+        <i class="fab fa-telegram-plane"></i> Телеграм канал
+      </a>
+      <a href="https://vk.com/@colizeum_spb_shushary-ceny" class="social-button price-button" target="_blank">
+        <i class="fas fa-file-invoice-dollar"></i> Прайс-лист
+      </a>
+      <a href="https://vk.com/@colizeum_spb_shushary-akcii" class="social-button promo-button" target="_blank">
+        <i class="fas fa-percent"></i> Акции
+      </a>
+      <!-- Используем ссылку на Telegram вместо телефона -->
+      <a href="https://t.me/COLIZEUM_SHUSHARIKI" class="social-button admin-button" target="_blank">
+        <i class="fas fa-headset"></i> Вызов администратора
+      </a>
+    </section>
     
-    <footer>
-        <div class="container">
-            <div class="footer-logo">Colizeum SPB</div>
-            <p class="footer-text">© 2025 Colizeum SPB Shushary. Все права защищены.</p>
+    <section class="maps-container">
+      <a href="https://yandex.ru/maps/org/colizeum/179346111322/?ll=30.375724%2C59.802958&z=19.05" class="social-button map-button" target="_blank">
+        <i class="fas fa-map-marker-alt"></i> Яндекс Карты
+      </a>
+      <a href="https://go.2gis.com/M6KmO" class="social-button map-button" target="_blank">
+        <i class="fas fa-map"></i> 2ГИС
+      </a>
+    </section>
+    
+    <section class="review-section">
+      <h2 class="review-heading">Оставь отзыв — получи бонусы!</h2>
+      <div class="review-content">
+        <div class="review-item">
+          <div class="review-icon">
+            <i class="fab fa-yandex"></i>
+          </div>
+          <div class="review-text">
+            Оставь отзыв на Яндекс.Картах и получи <span class="bonus-highlight">100 бонусов</span>
+          </div>
         </div>
-    </footer>
+        <div class="review-item">
+          <div class="review-icon">
+            <i class="fas fa-map"></i>
+          </div>
+          <div class="review-text">
+            Оставь отзыв на 2ГИС и получи <span class="bonus-highlight">50 бонусов</span>
+          </div>
+        </div>
+      </div>
+    </section>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('carousel');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const slides = document.querySelectorAll('.carousel-slide');
-            
-            let position = 0;
-            const slidesToShow = getSlideCount();
-            const slideWidth = 100 / slidesToShow;
-            
-            // Set initial width for slides
-            slides.forEach(slide => {
-                slide.style.width = slideWidth + '%';
-            });
-            
-            // Responsive slide count
-            function getSlideCount() {
-                if (window.innerWidth <= 480) return 1;
-                if (window.innerWidth <= 767) return 2;
-                if (window.innerWidth <= 991) return 3;
-                return 4;
+    <!-- Раздел карусели с каталогом в формате 4х4 -->
+    <section class="carousel-section">
+      <h2 class="carousel-heading">Наши продукты</h2>
+      <div class="carousel">
+        <div class="carousel-container" id="carousel">
+          <!-- Слайд 1: 16 товаров -->
+          <div class="carousel-slide">
+            <div class="product-grid">
+              <div class="product-card">
+                <img src="./images/adrenaline11.png" alt="Product 1" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Adrenaline</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKpnk.png" alt="Product 2" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">AdrenalineExtra</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKK5ea.png" alt="Product 3" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">AdrenalineZero</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKpnS.png" alt="Product 4" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">AdrenalineGame</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKA7k.png" alt="Product 5" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKA7m.png" alt="Product 6" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKA7S.png" alt="Product 7" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKA7w.png" alt="Product 8" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/FKKJKf.png" alt="Product 9" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/lit1.png" alt="Product 10" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/lit4.png" alt="Product 11" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/litt.png" alt="LitEnergy" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">LitEnergy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/cyberW.png" alt="Product 13" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">CyberWater </h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/YaK-PhotoRoom.png-PhotoRoom.png" alt="Product 14" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">CyberWater</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/Origa-PhotoRoom.png-PhotoRoom.png" alt="Product 15" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">CyberWater</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+              <div class="product-card">
+                <img src="./images/2-PhotoRoom.png-PhotoRoom.png" alt="Product 16" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">CyberWater</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Слайд 2: можно добавить новые товары (например, еще 16 карточек) -->
+          <div class="carousel-slide">
+            <div class="product-grid">
+              <div class="product-card">
+                <img src="./images/pngwing.com.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Red Bull</h3>
+                  <p class="product-price">150-300 ₽</p>
+                </div>
+              </div>
+               <div class="product-card">
+                <img src="./images/zxcv.png" alt="Product 18" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Red Bull 0.473</h3>
+                  <p class="product-price">300 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/da.png" alt="Product 19" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Red Bull 0.350</h3>
+                  <p class="product-price">240 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/asd.png" alt="Product 20" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Red Bull 0.250</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/fafasfaf.png" alt="Product 21" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Monster Energy</h3>
+                  <p class="product-price">300 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/dfggdsfg.png" alt="Product 22" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Monster Energy</h3>
+                  <p class="product-price">300 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/zxczxczczxc.png" alt="Product 23" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Monster Energy</h3>
+                  <p class="product-price">300 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/30878_1.png" alt="Product 24" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Monster Energy</h3>
+                  <p class="product-price">300 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/FKKp3f.png" alt="Product 25" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">SnickersSuper</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/FKKA1E.png" alt="Product 26" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">KitKat</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/FKKKzk.png" alt="Product 27" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Twix Extra</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/mars.png" alt="Product 28" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Mars</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/baynti.png" alt="Product 29" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">BountyTrio</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/malt.png" alt="Product 30" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Maltisers</h3>
+                  <p class="product-price">160 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/mm.png" alt="Product 31" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">M&M</h3>
+                  <p class="product-price">100 ₽</p>
+                </div>
+              </div>
+ <div class="product-card">
+                <img src="./images/asdadsad.png" alt="Product 32" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">CyberMush</h3>
+                  <p class="product-price">100 ₽</p>
+                </div>
+              </div>
+</div>
+          </div>
+          <!-- Слайд 2: можно добавить новые товары (например, еще 16 карточек) -->
+          <div class="carousel-slide">
+            <div class="product-grid">
+              <div class="product-card">
+                <img src="./images/dc1-840x560.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Добрый Кола</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+               <div class="product-card">
+                <img src="./images/1701262637545-350x253.png" alt="Product 18" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Добрый Лимон</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+<div class="product-card">
+                <img src="./images/0d0af28a-f4b6-40c0-a084-00d56c6e1753.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Добрый Апельсин</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div>
+<div class="product-card">
+                <img src="./images/pulpy.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Рulpy</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/lipton1.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Липотон Лимон</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/lipton2.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Липтон Персик</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/lipton3.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Липтон Малина</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/lipton4.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Липтон Зеленый</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/gorila.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Gorilla</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/genesis.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Genesis</h3>
+                  <p class="product-price">150 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/tornado.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Tornado</h3>
+                  <p class="product-price">120 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/juse.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Сок Добрый</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/voda.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Вода</h3>
+                  <p class="product-price">60 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/a79a840e13a8f0663e254b256392.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Черная смородина1.5Л</h3>
+                  <p class="product-price">180 ₽</p>
+                </div>
+              </div>
+<div class="product-card">
+                <img src="./images/roll.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Роллы</h3>
+                  <p class="product-price">220 ₽</p>
+                </div>
+              </div><div class="product-card">
+                <img src="./images/eat.png" alt="Product 17" class="product-image">
+                <div class="product-info">
+                  <h3 class="product-name">Сэндвичи</h3>
+                  <p class="product-price">200 ₽</p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-control" id="prevBtn">&#8249;</button>
+        <button class="carousel-control" id="nextBtn">&#8250;</button>
+      </div>
+    </section>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-logo">Colizeum SPB Shushary</div>
+      <p class="footer-text">© 2025 Все права защищены</p>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const carouselContainer = document.getElementById("carousel");
+        const slides = document.querySelectorAll(".carousel-slide");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        let currentIndex = 0;
+  
+        function updateCarousel() {
+            carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+  
+        nextBtn.addEventListener("click", function() {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateCarousel();
             }
-            
-            // Update slide count on window resize
-            window.addEventListener('resize', function() {
-                const newSlidesToShow = getSlideCount();
-                const newSlideWidth = 100 / newSlidesToShow;
-                
-                slides.forEach(slide => {
-                    slide.style.width = newSlideWidth + '%';
-                });
-                
-                // Reset position if needed
-                const maxPosition = slides.length - newSlidesToShow;
-                if (position > maxPosition) {
-                    position = maxPosition;
-                    updateCarouselPosition();
-                }
-            });
-            
-            // Control buttons
-            nextBtn.addEventListener('click', function() {
-                const slidesToShow = getSlideCount();
-                const maxPosition = slides.length - slidesToShow;
-                
-                if (position < maxPosition) {
-                    position++;
-                    updateCarouselPosition();
-                } else {
-                    // Loop back to the beginning with animation
-                    carousel.style.transition = 'none';
-                    position = 0;
-                    updateCarouselPosition();
-                    
-                    setTimeout(() => {
-                        carousel.style.transition = 'transform 0.5s ease';
-                    }, 50);
-                }
-            });
-            
-            prevBtn.addEventListener('click', function() {
-                if (position > 0) {
-                    position--;
-                    updateCarouselPosition();
-                } else {
-                    // Loop to the end with animation
-                    carousel.style.transition = 'none';
-                    const slidesToShow = getSlideCount();
-                    position = slides.length - slidesToShow;
-                    updateCarouselPosition();
-                    
-                    setTimeout(() => {
-                        carousel.style.transition = 'transform 0.5s ease';
-                    }, 50);
-                }
-            });
-            
-            function updateCarouselPosition() {
-                const slideWidth = 100 / getSlideCount();
-                carousel.style.transform = `translateX(-${position * slideWidth}%)`;
-            }
-            
-            // Auto slide (optional)
-            let interval = setInterval(function() {
-                nextBtn.click();
-            }, 5000);
-            
-            // Pause auto slide on hover
-            carousel.addEventListener('mouseenter', function() {
-                clearInterval(interval);
-            });
-            
-            carousel.addEventListener('mouseleave', function() {
-                interval = setInterval(function() {
-                    nextBtn.click();
-                }, 5000);
-            });
         });
-    </script>
+  
+        prevBtn.addEventListener("click", function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+  
+        // Реализация свайпа для мобильных устройств
+        let startX = 0;
+        let isDragging = false;
+  
+        carouselContainer.addEventListener("touchstart", function(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+  
+        carouselContainer.addEventListener("touchmove", function(e) {
+            if (!isDragging) return;
+            let currentX = e.touches[0].clientX;
+            let diff = startX - currentX;
+            if (Math.abs(diff) > 50) { // порог для смены слайда
+                if (diff > 0 && currentIndex < slides.length - 1) {
+                    currentIndex++;
+                } else if (diff < 0 && currentIndex > 0) {
+                    currentIndex--;
+                }
+                updateCarousel();
+                isDragging = false;
+            }
+        });
+  
+        carouselContainer.addEventListener("touchend", function() {
+            isDragging = false;
+        });
+    });
+  </script>
 </body>
-</html>а
+</html>
+@vitalka229
